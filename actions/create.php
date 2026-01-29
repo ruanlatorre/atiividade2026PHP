@@ -23,17 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 nacionalidade, estado_civil, email, telefone, endereco, cep, bairro, complemento, nivel_escolaridade, ocupacao)
                 VALUES ('$nome', '$cpf', '$rg', '$data_nascimento', '$nome_mae', '$nome_pai', '$nacionalidade', '$estado_civil', '$email', '$telefone', '$endereco', '$cep',
                 '$bairro', '$complemento', '$nivel_escolaridade', '$ocupacao')";
-    $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, 'ssssssssssssssss', $nome, $cpf, $rg, $data_nascimento, $nome_mae, $nome_pai, $nacionalidade, $estado_civil, $email, $telefone, $endereco, $cep, $bairro, $complemento, $nivel_escolaridade, $ocupacao);
 
-    if (mysqli_stmt_execute($stmt)) {
-        header("Location: ../actions/consult.php");
-        exit;
-    } else {
-        echo "Erro ao cadastrar pessoa: " . mysqli_error($conexao);
-    }
-mysqli_stmt_close($stmt);
+    mysqli_query($conexao, $sql);
 
 }
-
 ?>
